@@ -43,21 +43,24 @@ def run():
         page.fill("input#firstName", "Rafiul")
         time.sleep(1)
         #Last Name:
-        page.fill("input#lastName", "Turjokzxc")
+        page.fill("input#lastName", "Turjo")
         time.sleep(1)
         #Email:
         import random
         import string
 
+        # Generate a random email without any number at the start
         def generate_random_email():
-            username = ''.join(random.choices(string.ascii_lowercase + string.digits, k=8))
+            # Ensure the first character is a letter
+            first_char = random.choice(string.ascii_lowercase)
+            rest = ''.join(random.choices(string.ascii_lowercase + string.digits, k=7))
+            username = first_char + rest
             domain = ''.join(random.choices(string.ascii_lowercase, k=5))
             return f"{username}@{domain}.com"
-
         random_email = generate_random_email()
         page.fill("input#email", random_email)
-        #page.fill("input#email", "test@example.com")
         time.sleep(1)
+        #page.fill("input#email", "test@example.com")
         #Phone Number:
         page.fill("input#phone", "0415789585")
         time.sleep(1)
@@ -305,6 +308,7 @@ def run():
         time.sleep(2)
         # Wait for "Your Claim ID" text to appear on the page
         page.wait_for_selector("text=Your Claim ID", timeout=30000)
+
 
 
         #Page 5(Application Overview):
